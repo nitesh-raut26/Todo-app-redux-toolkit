@@ -30,10 +30,15 @@ export const todoSlice = createSlice({
         return todo;
       });
     },
+    markAlldone: (state, action) => {
+      state.todos = state.todos.map((todo) => {
+        return { ...todo, isDone: true };
+      });
+    },
   },
 });
 
-export const { addTodo, deleteTodo, markAsDone } = todoSlice.actions;
+export const { addTodo, deleteTodo, markAsDone, markAlldone } = todoSlice.actions;
 export default todoSlice.reducer;
 
 

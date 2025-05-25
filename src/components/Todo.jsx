@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import AddForm from "./AddForm";
-import { deleteTodo ,markAsDone} from "../features/todo/todoSlice";
+import {
+  deleteTodo,
+  markAsDone,
+  markAlldone,
+} from "../features/todo/todoSlice";
 
 
 export default function Todo() {
@@ -14,6 +18,10 @@ export default function Todo() {
     const handleMarkDone = (id,isDone) => {
         
         dispatch(markAsDone(id));
+    }
+  
+  const handleMarkAllDone = () => {
+      dispatch(markAlldone());
     }
 
     const handleStyle = () => {
@@ -49,13 +57,14 @@ export default function Todo() {
                 {todo.task}
               </span>
               &nbsp;&nbsp;&nbsp;&nbsp;
-              <button onClick={() => handleDelete(todo.id)}>Delete</button>
+              <button className="mt-2" onClick={() => handleDelete(todo.id)}>Delete</button>
               &nbsp;&nbsp;
-              <button onClick={() => handleMarkDone(todo.id,todo.isDone)}>
+              <button className="mt-2" onClick={() => handleMarkDone(todo.id,todo.isDone)}>
                 Mark As Done
               </button>
             </li>
           ))}
+          <button onClick={handleMarkAllDone} className="mt-2">MarkAllDone</button>
         </ul>
       </div>
     );
